@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Budget Tracking</title>
+
+    <!--  
+    OVERVIEW:
+    The page includes a navbar, a hero section, features section, budget categories, and a footer
+
+    Styles:
+    - Global styles reset margins and paddings for consistency across browsers
+    - font styled with 'Montserrat' and 'Poppins' fonts for headings and body text
+    - The navbar features a bold and responsive layout with hover effects on links
+    - The hero section animates in from the top with a fade effect
+    - The features section displays icons with sliding animations
+    - The budget categories section includes cards with hover effects
+    - The footer is styled with a consistent background color and centered text
+    REFERENCE:
+    - Google Fonts. (n.d.). Google Fonts. Google Fonts. https://fonts.google.com/specimen/Poppins
+    - Google Fonts. (n.d.-b). Google Fonts. https://fonts.google.com/specimen/Montserrat
+    - transition - CSS: Cascading Style Sheets | MDN. (n.d.-b). Developer.mozilla.org. https://developer.mozilla.org/en-US/docs/Web/CSS/transition
+    
+    Animation Keyframes:
+    - 'fadeIn' is smooth fade-in effect used for the hero section and budget section
+    - 'slideUp'is slide-up animation used for the feature section and budget cards
+    REFERENCE: 
+    @keyframes. (n.d.). MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes
+
+    KEY SECTION
+    1. Navbar
+    provide navigation link to other key sections of website. features a logo and links arranged in a row with hover effects
+
+    2. Hero
+    - call to action button to begin tracking user's shopping budget
+    - image displayed alongside text to show purpose of website
+    REFERENCE:
+    - Basic concepts of flexbox. (n.d.). MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox
+
+    3. Features
+    - showcase website's key features
+    - features represented with an icon
+    REFERENCE:
+    - grid - CSS: Cascading Style Sheets | MDN. (2023, July 18). Developer.mozilla.org. https://developer.mozilla.org/en-US/docs/Web/CSS/grid
+
+    4. Budget overview section
+    - display budget categories in card format so its easier to track expenses
+    - card includes images, name and amount spent
+
+    5. Footer
+    - copyright
+
+     -->
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: #f4faff;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: "Montserrat", sans-serif;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        p {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #555;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #034078;
+            padding: 15px 20px;
+            color: white;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00c8ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 10%;
+            background: white;
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+        /*reference*/
+        /*MDN contributors. “@Keyframes.” MDN Web Docs, developer.mozilla.org/en-US/docs/Web/CSS/@keyframes.*/
+        @keyframes fadeIn {
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text {
+            max-width: 500px;
+        }
+
+        .cta-button {
+            background: #0288d1;
+            color: white;
+            padding: 14px 22px;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.1);
+        }
+
+        .hero-image {
+            max-width: 400px;
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            padding: 50px 10%;
+            background: #e3f2fd;
+        }
+
+        .feature {
+            width: 30%;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 1s ease-in-out forwards 0.5s;
+        }
+
+        .feature img {
+            width: 50px;
+            margin-bottom: 10px;
+        }
+
+        /* Budget Categories */
+        .budget-section {
+            padding: 60px 10%;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 1s ease-in-out forwards 1s;
+        }
+        /*reference*/
+        /*MDN contributors. “@Keyframes.” MDN Web Docs, developer.mozilla.org/en-US/docs/Web/CSS/@keyframes.*/
+
+        @keyframes slideUp {
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .budget-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .budget-grid {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+        }
+
+        .budget-section {
+            padding: 60px 10%;
+            text-align: center;
+        }
+
+        .budget-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .budget-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            align-items: stretch; /* Ensure equal height */
+        }
+
+        .budget-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 250px; /* Ensuring all cards have the same width */
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .budget-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .budget-card img {
+            width: 90px;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Fix */
+        @media (max-width: 768px) {
+            .budget-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: #034078;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+            font-size: 1rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">ᯓ★Budget Track</div>
+        <div class="nav-links">
+            <a href="animation.html">Home</a>
+            <a href="D&D.html">Shop</a>
+            <a href="assg_geolocation.html">Currency</a>
+            <a href="AS01-GROUP07.html">Budget Tracker</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-text">
+            <h1>Take Control of Your Shopping Budget</h1>
+            <p>Track your expenses, set spending limits, and save more effortlessly.</p>
+            <a href="#" class="cta-button">Start Tracking Now</a>
+        </div>
+        <img class="hero-image" src="https://cdn-icons-png.flaticon.com/512/3037/3037156.png" alt="Budget Tracking">
+    </div>
+
+    <!-- Features -->
+    <div class="features">
+        <div class="feature">
+            <img src="https://cdn-icons-png.flaticon.com/128/1041/1041916.png" alt="Alerts">
+            <h3>Budget Alerts</h3>
+            <p>Get notified when you're overspending.</p>
+        </div>
+        <div class="feature">
+            <img src="https://cdn-icons-png.flaticon.com/128/1256/1256650.png" alt="Categories">
+            <h3>Expense Categories</h3>
+            <p>Organize and analyze where your money goes.</p>
+        </div>
+        <div class="feature">
+            <img src="https://cdn-icons-png.flaticon.com/128/833/833314.png" alt="Savings">
+            <h3>Savings Insights</h3>
+            <p>Find smart ways to save money.</p>
+        </div> 
+    </div>
+
+    <!-- Budget Categories -->
+    <div class="budget-section">
+        <h2 class="budget-title">Your Budget Overview</h2>
+        <div class="budget-grid">
+            <div class="budget-card">
+                <img src="https://i.pinimg.com/736x/3e/fb/25/3efb25d1f2c7972a50950d890afd64a2.jpg" alt="Food">
+                <h3>Food & Groceries</h3>
+                <p>$250 spent</p>
+            </div>
+            <div class="budget-card">
+                <img src="https://i.pinimg.com/736x/42/b3/2a/42b32a8ed08ffc3a93a66b8e27b0f2c7.jpg" alt="Clothes">
+                <h3>Clothing</h3>
+                <p>$120 spent</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        © 2025 BudgetTrack. All Rights Reserved.
+    </div>
+
+
+<!-- SSE
+
+1) “Document.getElementById(),” MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById
+- Selects an HTML element by its ID for manipulation.
+
+2) “EventTarget.addEventListener(),” MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+- Adds a function that runs when a specific event occurs.
+
+3) “Element.classList - Web APIs | MDN,” developer.mozilla.org. https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
+- Adds or removes CSS classes to show or hide elements.
+
+4) “Console.log() - Web APIs | MDN,” developer.mozilla.org. https://developer.mozilla.org/en-US/docs/Web/API/Console/log
+- Outputs messages to the browser console for debugging.
+
+5) “EventSource - Web APIs | MDN,” MDN Web Docs, Mar. 13, 2025. https://developer.mozilla.org/en-US/docs/Web/API/EventSource (accessed Apr. 09, 2025).
+- Opens a connection to receive real-time messages from a server.
+
+6) “EventSource: message event - Web APIs | MDN,” MDN Web Docs, Apr. 03, 2025. https://developer.mozilla.org/en-US/docs/Web/API/EventSource/onmessage (accessed Apr. 09, 2025).
+- Handles incoming messages from the SSE connection.
+
+7) “EventSource: error event - Web APIs | MDN,” MDN Web Docs, Oct. 08, 2024. https://developer.mozilla.org/en-US/docs/Web/API/EventSource/onerror (accessed Apr. 09, 2025).
+- Handles errors from the SSE connection.
+
+8) “String.prototype.includes() - JavaScript | MDN,” MDN Web Docs, Mar. 13, 2025. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes (accessed Apr. 09, 2025).
+- Checks if a string contains a specific substring.
+
+9) “String.prototype.replace() - JavaScript | MDN,” MDN Web Docs, Jan. 19, 2025. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace
+- Replaces a part of the string with new content.
+
+10) “Server-sent events - Web APIs | MDN,” developer.mozilla.org. https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events
+- Enables live budget alerts and updates to be pushed to the user without refreshing the page. -->
+    
+    <style type="text/css">/* Main card */
+        .update-card {
+            width: 320px;
+            padding: 15px;
+            background-color: #E3E3E3;
+            border-radius: 15px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            position: fixed; /* Fixed position to keep it in view */
+            top: 20px; /* Distance from the top */
+            right: 20px; /* Distance from the right */
+            z-index: 100; /* To keep it above other elements */
+        }
+
+        /* Title */
+        .update-card h3 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* Updates box */
+        #updatesBox {
+            background-color: darkgray;
+            color: white;
+            padding: 10px;
+            min-height: 50px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Budget alert */
+        #budgetAlert {
+            background-color: #FF4C4C;
+            color: white;
+            padding: 8px;
+            border-radius: 8px;
+            display: none;
+            margin-bottom: 10px;
+        }
+
+        .alert-text {
+            font-weight: bold;
+        }
+
+        /* Spending breakdown */
+        #spendingBreakdown {
+            background-color: #F8F8F8;
+            padding: 8px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        #spendingList {
+            list-style-type: none;
+            padding: 0;
+            font-size: 14px;
+        }
+
+        
+        /* Button styling */
+        #startUpdates,
+        #hideCardBtn {
+            background-color: #2C6E49;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 90%;
+            font-size: 14px;
+            transition: 0.3s;
+            margin-top: 5px;
+        }
+
+        #startUpdates:hover,
+        #hideCardBtn:hover {
+            background-color: #1F5035;
+        }
+
+        /* Floating show button */
+        #showCardBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #2C6E49;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+        }
+
+        /* Hidden class for toggling */
+        .hidden {
+            display: none;
+        }
+
+        </style>
+            <title></title>
+        </head>
+        <body>
+            <!-- Main Card Element -->
+    <div class="update-card" id="updateCard">
+        <h3>Smart Budgeting: <br> Spend Wisely, Save Smartly</h3>
+
+        <!-- Updates Area -->
+        <div id="updatesBox">
+            <p class="waiting">Tracking your expenses...</p>
+        </div>
+
+        <!-- Budget Warning -->
+        <div id="budgetAlert" class="hidden">
+            <p class="alert-text">⚠ Warning: Budget Exceeded!</p>
+        </div>
+
+        <!-- Spending List -->
+        <div id="spendingBreakdown">
+            <p><strong>Spending Breakdown:</strong></p>
+            <ul id="spendingList"></ul>
+        </div>
+
+        <!-- Buttons -->
+        <button id="startUpdates">Start Budget Updates</button>
+        <button id="hideCardBtn">Hide</button>
+    </div>
+
+    <!-- Show Button -->
+    <button id="showCardBtn">Show Updates</button>
+
+    <!-- JavaScript Section -->
+    <script type="text/javascript">
+        // References:
+        // EventSource: https://developer.mozilla.org/en-US/docs/Web/API/EventSource
+        // DOM Manipulation: https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById
+
+        const updateCard = document.getElementById("updateCard");
+        const showCardBtn = document.getElementById("showCardBtn");
+        const hideCardBtn = document.getElementById("hideCardBtn");
+
+        // Hide card on click
+        hideCardBtn.addEventListener("click", () => {
+            updateCard.classList.add("hidden");
+            showCardBtn.style.display = "block";
+        });
+
+        // Show card on click
+        showCardBtn.addEventListener("click", () => {
+            updateCard.classList.remove("hidden");
+            showCardBtn.style.display = "none";
+        });
+
+        // SSE connection setup
+        document.getElementById("startUpdates").addEventListener("click", function () {
+            console.log("SSE connection started...");
+
+            const eventSource = new EventSource("https://lms.pb.edu.bn/wy2301/sse.php");
+
+            eventSource.onmessage = function (event) {
+                console.log("Received message:", event.data);
+
+                if (event.data.includes("#GROUP07")) {
+                    console.log("Group07 message detected!");
+                    let updatesBox = document.getElementById("updatesBox");
+                    updatesBox.innerHTML = `<p>${event.data.replace("#GROUP07", "")}</p>`;
+                }
+            };
+
+            eventSource.onerror = function () {
+                console.log("SSE error! Check server or connection.");
+            };
+        });
+        </script>
+
+
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Budget Tracking</title>
+
+    <!--  
+    OVERVIEW:
+    The page includes a navbar, a hero section, features section, budget categories, and a footer
+
+    Styles:
+    - Global styles reset margins and paddings for consistency across browsers
+    - font styled with 'Montserrat' and 'Poppins' fonts for headings and body text
+    - The navbar features a bold and responsive layout with hover effects on links
+    - The hero section animates in from the top with a fade effect
+    - The features section displays icons with sliding animations
+    - The budget categories section includes cards with hover effects
+    - The footer is styled with a consistent background color and centered text
+    REFERENCE:
+    - Google Fonts. (n.d.). Google Fonts. Google Fonts. https://fonts.google.com/specimen/Poppins
+    - Google Fonts. (n.d.-b). Google Fonts. https://fonts.google.com/specimen/Montserrat
+    - transition - CSS: Cascading Style Sheets | MDN. (n.d.-b). Developer.mozilla.org. https://developer.mozilla.org/en-US/docs/Web/CSS/transition
+    
+    Animation Keyframes:
+    - 'fadeIn' is smooth fade-in effect used for the hero section and budget section
+    - 'slideUp'is slide-up animation used for the feature section and budget cards
+    REFERENCE: 
+    @keyframes. (n.d.). MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes
+
+    KEY SECTION
+    1. Navbar
+    provide navigation link to other key sections of website. features a logo and links arranged in a row with hover effects
+
+    2. Hero
+    - call to action button to begin tracking user's shopping budget
+    - image displayed alongside text to show purpose of website
+    REFERENCE:
+    - Basic concepts of flexbox. (n.d.). MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox
+
+    3. Features
+    - showcase website's key features
+    - features represented with an icon
+    REFERENCE:
+    - grid - CSS: Cascading Style Sheets | MDN. (2023, July 18). Developer.mozilla.org. https://developer.mozilla.org/en-US/docs/Web/CSS/grid
+
+    4. Budget overview section
+    - display budget categories in card format so its easier to track expenses
+    - card includes images, name and amount spent
+
+    5. Footer
+    - copyright
+
+     -->
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: #f4faff;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: "Montserrat", sans-serif;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        p {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #555;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #034078;
+            padding: 15px 20px;
+            color: white;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00c8ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 10%;
+            background: white;
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+        /*reference*/
+        /*MDN contributors. “@Keyframes.” MDN Web Docs, developer.mozilla.org/en-US/docs/Web/CSS/@keyframes.*/
+        @keyframes fadeIn {
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text {
+            max-width: 500px;
+        }
+
+        .cta-button {
+            background: #0288d1;
+            color: white;
+            padding: 14px 22px;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.1);
+        }
+
+        .hero-image {
+            max-width: 400px;
+        }
+
+        /* Features Section */
+        .features {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            padding: 50px 10%;
+            background: #e3f2fd;
+        }
+
+        .feature {
+            width: 30%;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 1s ease-in-out forwards 0.5s;
+        }
+
+        .feature img {
+            width: 50px;
+            margin-bottom: 10px;
+        }
+
+        /* Budget Categories */
+        .budget-section {
+            padding: 60px 10%;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 1s ease-in-out forwards 1s;
+        }
+        /*reference*/
+        /*MDN contributors. “@Keyframes.” MDN Web Docs, developer.mozilla.org/en-US/docs/Web/CSS/@keyframes.*/
+
+        @keyframes slideUp {
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .budget-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .budget-grid {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+        }
+
+        .budget-section {
+            padding: 60px 10%;
+            text-align: center;
+        }
+
+        .budget-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .budget-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            align-items: stretch; /* Ensure equal height */
+        }
+
+        .budget-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 250px; /* Ensuring all cards have the same width */
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .budget-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .budget-card img {
+            width: 90px;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive Fix */
+        @media (max-width: 768px) {
+            .budget-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: #034078;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+            font-size: 1rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">ᯓ★Budget Track</div>
+        <div class="nav-links">
+            <a href="animation.html">Home</a>
+            <a href="D&D.html">Shop</a>
+            <a href="assg_geolocation.html">Currency</a>
+            <a href="AS01-GROUP07.html">Budget Tracker</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-text">
+            <h1>Take Control of Your Shopping Budget</h1>
+            <p>Track your expenses, set spending limits, and save more effortlessly.</p>
+            <a href="#" class="cta-button">Start Tracking Now</a>
+        </div>
+        <img class="hero-image" src="https://cdn-icons-png.flaticon.com/512/3037/3037156.png" alt="Budget Tracking">
+    </div>
+
+    <!-- Features -->
+    <div class="features">
+        <div class="feature">
+            <img src="https://cdn-icons-png.flaticon.com/128/1041/1041916.png" alt="Alerts">
+            <h3>Budget Alerts</h3>
+            <p>Get notified when you're overspending.</p>
+        </div>
+        <div class="feature">
+            <img src="https://cdn-icons-png.flaticon.com/128/1256/1256650.png" alt="Categories">
+            <h3>Expense Categories</h3>
+            <p>Organize and analyze where your money goes.</p>
+        </div>
+        <div class="feature">
+            <img src="https://cdn-icons-png.flaticon.com/128/833/833314.png" alt="Savings">
+            <h3>Savings Insights</h3>
+            <p>Find smart ways to save money.</p>
+        </div> 
+    </div>
+
+    <!-- Budget Categories -->
+    <div class="budget-section">
+        <h2 class="budget-title">Your Budget Overview</h2>
+        <div class="budget-grid">
+            <div class="budget-card">
+                <img src="https://i.pinimg.com/736x/3e/fb/25/3efb25d1f2c7972a50950d890afd64a2.jpg" alt="Food">
+                <h3>Food & Groceries</h3>
+                <p>$250 spent</p>
+            </div>
+            <div class="budget-card">
+                <img src="https://i.pinimg.com/736x/42/b3/2a/42b32a8ed08ffc3a93a66b8e27b0f2c7.jpg" alt="Clothes">
+                <h3>Clothing</h3>
+                <p>$120 spent</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        © 2025 BudgetTrack. All Rights Reserved.
+    </div>
+
+</body>
+</html>
+
+
+
